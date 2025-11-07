@@ -1,4 +1,4 @@
-# s3-utils
+# s3-helpers
 
 Ensemble de fonctions d'aide à la manipulation de données à travers des stockages objets compatibles S3.
 
