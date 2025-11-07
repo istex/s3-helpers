@@ -1,0 +1,17 @@
+{
+  "env": {
+    "commonjs": true,
+    "es2021": true,
+    "mocha": true
+  },
+  "extends": "standard",
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "rules": {
+    "semi": ["error", "always"],
+    "no-extra-semi": "error",
+    "comma-dangle": ["error", "always-multiline"],
+    "complexity": ["error", 10]
+  }
+}

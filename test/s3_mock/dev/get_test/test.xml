@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component xmlns="******" version="******" type="******" xml:lang="******">
+  <header>
+    <publicationMeta level="******">
+      <publisherInfo>
+        <publisherName>******</publisherName>
+        <publisherLoc>******</publisherLoc>
+      </publisherInfo>
+      <doi registered="******">******</doi>
+      <issn type="******">******</issn>
+      <issn type="******">******</issn>
+      <idGroup>
+        <id type="******" value="******"/>
+      </idGroup>
+      <titleGroup>
+        <title type="******" xml:lang="******" sort="******">******</title>
+        <title type="******">******</title>
+      </titleGroup>
+    </publicationMeta>
+    <publicationMeta level="******" position="******">
+      <doi origin="******" registered="******">******</doi>
+      <numberingGroup>
+        <numbering type="******" number="******">******</numbering>
+        <numbering type="******">******</numbering>
+      </numberingGroup>
+      <coverDate startDate="******">******</coverDate>
+    </publicationMeta>
+    <publicationMeta level="******" type="******" position="******" status="******">
+      <doi origin="******" registered="******">******</doi>
+      <idGroup>
+        <id type="******" value="******"/>
+      </idGroup>
+      <countGroup>
+        <count type="******" number="******"/>
+      </countGroup>
+      <titleGroup>
+        <title type="******">******</title>
+        <title type="******">******</title>
+      </titleGroup>
+      <copyright ownership="******">******</copyright>
+      <eventGroup>
+        <event type="******" agent="******" date="******"/>
+        <event type="******" date="******"/>
+        <event type="******" date="******"/>
+        <event type="******" agent="******" date="******"/>
+        <event type="******" agent="******" date="******"/>
+      </eventGroup>
+      <numberingGroup>
+        <numbering type="******">******</numbering>
+        <numbering type="******">******</numbering>
+      </numberingGroup>
+      <correspondenceTo>******</correspondenceTo>
+      <linkGroup>
+        <link type="******" href="******"/>
+      </linkGroup>
+    </publicationMeta>
+    <contentMeta>
+      <titleGroup>
+        <title type="******" xml:lang="******">******</title>
+      </titleGroup>
+      <creators>
+        <creator xml:id="******" creatorRole="******" affiliationRef="******">
+          <personName>
+            <givenNames>******</givenNames>
+            <familyName>******</familyName>
+          </personName>
+        </creator>
+        <creator xml:id="******" creatorRole="******" affiliationRef="******">
+          <personName>
+            <givenNames>******</givenNames>
+            <familyName>******</familyName>
+          </personName>
+        </creator>
+        <creator xml:id="******" creatorRole="******" affiliationRef="******">
+          <personName>
+            <givenNames>******</givenNames>
+            <familyName>******</familyName>
+          </personName>
+        </creator>
+        <creator xml:id="******" creatorRole="******" affiliationRef="******" corresponding="******">
+          <personName>
+            <givenNames>******</givenNames>
+            <familyName>******</familyName>
+          </personName>
+          <contactDetails>
+            <email>******</email>
+          </contactDetails>
+        </creator>
+      </creators>
+      <affiliationGroup>
+        <affiliation xml:id="******" countryCode="******" type="******">
+          <unparsedAffiliation>******</unparsedAffiliation>
+        </affiliation>
+        <affiliation xml:id="******" countryCode="******" type="******">
+          <unparsedAffiliation>******</unparsedAffiliation>
+        </affiliation>
+        <affiliation xml:id="******" countryCode="******" type="******">
+          <unparsedAffiliation>******</unparsedAffiliation>
+        </affiliation>
+        <affiliation xml:id="******" countryCode="******" type="******">
+          <unparsedAffiliation>******</unparsedAffiliation>
+        </affiliation>
+      </affiliationGroup>
+      <keywordGroup xml:lang="******" type="******">
+        <keyword xml:id="******">******</keyword>
+        <keyword xml:id="******">******</keyword>
+        <keyword xml:id="******">******</keyword>
+        <keyword xml:id="******">******</keyword>
+        <keyword xml:id="******">******</keyword>
+      </keywordGroup>
+      <abstractGroup>
+        <abstract type="******" xml:lang="******">
+          <p>******</p>
+        </abstract>
+      </abstractGroup>
+    </contentMeta>
+  </header>
+</component>
