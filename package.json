@@ -4,7 +4,7 @@
   "description": "Using npm: ```shell $ npm ci $ npm run li:path:add # This will make avaiable li command everywhere by adding it tou your PATH",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --require ts-node/register --recursive"
+    "test": "mocha --require ts-node/register --recursive --es-module-specifier-resolution=node"
   },
   "keywords": [],
   "author": "",
