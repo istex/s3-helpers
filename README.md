@@ -33,7 +33,7 @@ Paramètres:
 | --- | --- |
 | bucket | Nom du bucket dans lequel la fonction va envoyer le fichier |
 | key | Clé du fichier une fois inscrit dans le stockage (arborescence + nom de fichier) |
-| file | Fichier à envoyer au stockae |
+| file | Fichier à envoyer au stockage |
 | s3Client? | Client S3 (optionnel) |
 
 #### async getFileFromS3(bucket, key, file, s3Client?)
@@ -47,7 +47,7 @@ Paramètres:
 | --- | --- |
 | bucket | Nom du bucket dans lequel la fonction va envoyer le fichier |
 | key | Clé du fichier une fois inscrit dans le stockage (arborescence + nom de fichier) |
-| file | Fichier à envoyer au stockae |
+| file | Fichier à envoyer au stockage |
 | s3Client? | Client S3 (optionnel) |
 
-Le fichier retourné est de type GetObjectCommandOutput (Plus d'informations sur [Cette page](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-aws-sdk-client-s3/Interface/GetObjectCommandOutput/))
+Le fichier retourné est de type GetObjectCommandOutput (Plus d'informations sur [Cette page](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-aws-sdk-client-s3/Interface/GetObjectCommandOutput/)).
