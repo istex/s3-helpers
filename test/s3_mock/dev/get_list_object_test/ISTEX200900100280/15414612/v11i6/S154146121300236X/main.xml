@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//ES//DTD journal article DTD version 5.2.0//EN//XML" "art520.dtd"[
+<!ENTITY fx1 SYSTEM "fx1" NDATA IMAGE>
+]>
+<article docsubtype="sco" xmlns:ce="http://www.elsevier.com/xml/common/dtd">
+	<item-info>
+		<jid>******</jid>
+		<aid>******</aid>
+		<ce:pii>******</ce:pii>
+		<ce:doi>******</ce:doi>
+		<ce:copyright type="full-transfer" year="2013">******</ce:copyright>
+		<ce:doctopics>
+			<ce:doctopic id="cedoct10">
+				<ce:text>******</ce:text>
+			</ce:doctopic>
+		</ce:doctopics>
+	</item-info>
+	<head>
+		<ce:dochead id="cedoch10">
+			<ce:textfn>******</ce:textfn>
+		</ce:dochead>
+		<ce:title id="cetitle10">******<ce:italic>******</ce:italic></ce:title>
+		<ce:author-group id="aug10">
+			<ce:author id="au10">
+				<ce:given-name>******</ce:given-name>
+				<ce:surname>******</ce:surname>
+				<ce:degrees>******</ce:degrees><ce:cross-ref id="cecref10" refid="fn1"><ce:sup>******</ce:sup></ce:cross-ref>
+				<ce:e-address id="ceeadd10" type="email">******</ce:e-address>
+			</ce:author>
+			<ce:footnote id="fn1">
+				<ce:label>******</ce:label>
+				<ce:note-para id="cenpara10"><ce:italic>******</ce:italic></ce:note-para>
+			</ce:footnote>
+		</ce:author-group>
+	</head>
+	<body>
+		<ce:sections>
+			<ce:para id="para10"><ce:display>
+					<ce:figure id="f10">
+						<ce:link locator="fx1"/>
+					</ce:figure>
+				</ce:display></ce:para>
+			<ce:para id="para20">******<ce:italic>******</ce:italic>******</ce:para>
+			<ce:para id="para30">******</ce:para>
+			<ce:para id="para40">******</ce:para>
+			<ce:para id="para50"><ce:bold>******</ce:bold>******</ce:para>
+			<ce:para id="para60"><ce:bold>******</ce:bold>******</ce:para>
+			<ce:para id="para70"><ce:bold>******</ce:bold>******</ce:para>
+			<ce:para id="para80"><ce:bold>******</ce:bold>******</ce:para>
+			<ce:para id="para90">******</ce:para>
+			<ce:para id="para100">******</ce:para>
+			<ce:para id="para110">******</ce:para>
+			<ce:para id="para120">******</ce:para>
+			<ce:para id="para130">******</ce:para>
+			<ce:para id="para140">******</ce:para>
+			<ce:para id="para150">******</ce:para>
+		</ce:sections>
+	</body>
+</article>

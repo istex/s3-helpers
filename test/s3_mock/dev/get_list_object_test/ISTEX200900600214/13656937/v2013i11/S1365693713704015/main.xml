@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE simple-article PUBLIC "-//ES//DTD journal article DTD version 5.2.0//EN//XML" "art520.dtd">
+<simple-article docsubtype="nws" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ce="http://www.elsevier.com/xml/common/dtd">
+	<item-info>
+		<jid>******</jid>
+		<aid>******</aid>
+		<ce:pii>******</ce:pii>
+		<ce:doi>******</ce:doi>
+		<ce:copyright type="other" year="2013"/>
+		<ce:doctopics>
+			<ce:doctopic id="cedoct10">
+				<ce:text>******</ce:text>
+			</ce:doctopic>
+		</ce:doctopics>
+	</item-info>
+	<simple-head>
+		<ce:dochead id="cedoch10">
+			<ce:textfn>******</ce:textfn>
+		</ce:dochead>
+		<ce:title id="cetitle10">******</ce:title>
+	</simple-head>
+	<body>
+		<ce:sections>
+			<ce:para id="para10"><ce:display>
+					<ce:table id="tbl1" frame="topbot" rowsep="0" colsep="0">
+						<tgroup cols="3">
+							<colspec colnum="1" colname="col1"/>
+							<colspec colnum="2" colname="col2"/>
+							<colspec colnum="3" colname="col3"/>
+							<thead>
+								<row valign="bottom">
+									<entry align="center" namest="col1" nameend="col3">******</entry>
+								</row>
+								<row valign="bottom">
+									<entry align="center" namest="col1" nameend="col3">******</entry>
+								</row>
+								<row valign="bottom" rowsep="1">
+									<entry/>
+									<entry align="right">******</entry>
+									<entry align="right">******</entry>
+								</row>
+							</thead>
+							<tbody>
+								<row valign="top" rowsep="1">
+									<entry align="left">******</entry>
+									<entry align="right">******</entry>
+									<entry align="right">******</entry>
+								</row>
+								<row valign="top" rowsep="1">
+									<entry align="left">******</entry>
+									<entry align="right">******</entry>
+									<entry align="right">******</entry>
+								</row>
+								<row valign="top" rowsep="1">
+									<entry align="left">******</entry>
+									<entry align="right">******</entry>
+									<entry align="right">******</entry>
+								</row>
+								<row valign="top" rowsep="1">
+									<entry align="left">******</entry>
+									<entry align="right">******</entry>
+									<entry align="right">******</entry>
+								</row>
+								<row valign="top" rowsep="1">
+									<entry align="left">******</entry>
+									<entry align="right">******</entry>
+									<entry align="right">******</entry>
+								</row>
+								<row valign="top" rowsep="1">
+									<entry align="left">******</entry>
+									<entry align="right">******</entry>
+									<entry align="right">******</entry>
+								</row>
+								<row valign="top">
+									<entry align="left">******</entry>
+									<entry align="right">******</entry>
+									<entry align="right">******</entry>
+								</row>
+							</tbody>
+						</tgroup>
+						<tgroup cols="3">
+							<colspec colnum="1" colname="col1"/>
+							<colspec colnum="2" colname="col2"/>
+							<colspec colnum="3" colname="col3"/>
+							<thead>
+								<row valign="bottom">
+									<entry align="center" namest="col1" nameend="col3">******</entry>
+								</row>
+								<row valign="bottom" rowsep="1">
+									<entry/>
+									<entry align="right">******</entry>
+									<entry align="right">******</entry>
+								</row>
+							</thead>
+							<tbody>
+								<row valign="top" rowsep="1">
+									<entry align="left">******</entry>
+									<entry align="right">******</entry>
+									<entry align="right">******</entry>
+								</row>
+								<row valign="top" rowsep="1">
+									<entry align="left">******</entry>
+									<entry align="right">******</entry>
+									<entry align="right">******</entry>
+								</row>
+								<row valign="top" rowsep="1">
+									<entry align="left">******</entry>
+									<entry align="right">******</entry>
+									<entry align="right">******</entry>
+								</row>
+								<row valign="top" rowsep="1">
+									<entry align="left">******</entry>
+									<entry align="right">******</entry>
+									<entry align="right">******</entry>
+								</row>
+								<row valign="top" rowsep="1">
+									<entry align="left">******</entry>
+									<entry align="right">******</entry>
+									<entry align="right">******</entry>
+								</row>
+								<row valign="top" rowsep="1">
+									<entry align="left">******</entry>
+									<entry align="right">******</entry>
+									<entry align="right">******</entry>
+								</row>
+								<row valign="top">
+									<entry align="left">******</entry>
+									<entry align="right">******</entry>
+									<entry align="right">******</entry>
+								</row>
+							</tbody>
+						</tgroup>
+					</ce:table>
+				</ce:display></ce:para>
+			<ce:para id="para20"><ce:display>
+					<ce:textbox id="cetextbox10">
+						<ce:caption id="cecap10">
+							<ce:simple-para id="spara10">******</ce:simple-para>
+						</ce:caption>
+						<ce:textbox-body>
+							<ce:sections>
+								<ce:para id="para30">******</ce:para>
+								<ce:para id="para40">******</ce:para>
+								<ce:para id="para50">******</ce:para>
+								<ce:para id="para60">******</ce:para>
+								<ce:para id="para70">******</ce:para>
+								<ce:para id="para80">******</ce:para>
+								<ce:para id="para90"><ce:inter-ref id="interrefs10" xlink:href="http://www.entegris.com">******</ce:inter-ref></ce:para>
+							</ce:sections>
+						</ce:textbox-body>
+					</ce:textbox>
+				</ce:display></ce:para>
+		</ce:sections>
+	</body>
+</simple-article>

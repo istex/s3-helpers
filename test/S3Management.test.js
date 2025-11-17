@@ -1,5 +1,5 @@
 import expect from "expect.js";
-import { getS3Client, putFileToS3, getFileFromS3, resetS3Client } from "../src/S3Management.ts";
+import { getS3Client, putFileToS3, getFileFromS3, resetS3Client, getListObjectsFromS3 } from "../src/S3Management.ts";
 import { S3Client } from "@aws-sdk/client-s3";
 import { createS3Client } from "mock-aws-s3-v3";
 import fs from "fs";
@@ -68,4 +68,16 @@ describe("getFileFromS3(bucket, key, s3Client?)", () => {
         const s3File = await getFileFromS3("dev", "get_test/test.xml", mockClient);
         expect(await s3File.Body.transformToString()).to.be(fs.readFileSync("test/s3_mock/dev/get_test/test.xml").toString())
     })
+})
+
+describe("getListObjectsFromS3(bucket, prefix, s3Client?)", () => {
+	before(resetS3Client);
+	it("Should get the list of files from S3 (50 subfolders with 1 XML file and 1 PDF file each))", async () => {
+		const mockClient = createS3Client({localDirectory: "./test/s3_mock", bucket: "dev"});
+		const response = await getListObjectsFromS3("dev", "get_list_object_test", mockClient);
+		expect(response.length).to.be(100);
+		expect(response.filter(f => f.Key.endsWith(".pdf")).length).to.be(50)
+		expect(response.filter(f => f.Key.endsWith(".xml")).length).to.be(50);
+		expect(response.filter(f => f.Key.includes("ISTEX200900100194")).length).to.be(2)
+	});
 })

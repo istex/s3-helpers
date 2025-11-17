@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE simple-article PUBLIC "-//ES//DTD journal article DTD version 5.2.0//EN//XML" "art520.dtd">
+<simple-article docsubtype="abs" xmlns:ce="http://www.elsevier.com/xml/common/dtd">
+	<item-info>
+		<jid>******</jid>
+		<aid>******</aid>
+		<ce:pii>******</ce:pii>
+		<ce:doi>******</ce:doi>
+		<ce:copyright type="joint" year="2013">******</ce:copyright>
+	</item-info>
+	<simple-head>
+		<ce:dochead id="cedoch10">
+			<ce:textfn>******</ce:textfn>
+			<ce:dochead id="cedoch20">
+				<ce:textfn>******</ce:textfn>
+			</ce:dochead>
+		</ce:dochead>
+		<ce:title id="cetitle10">******</ce:title>
+		<ce:author-group id="aug10">
+			<ce:author id="au10">
+				<ce:given-name>******</ce:given-name>
+				<ce:surname>******</ce:surname>
+			</ce:author>
+			<ce:author id="au20">
+				<ce:given-name>******</ce:given-name>
+				<ce:surname>******</ce:surname>
+			</ce:author>
+			<ce:author id="au30">
+				<ce:given-name>******</ce:given-name>
+				<ce:surname>******</ce:surname>
+			</ce:author>
+		</ce:author-group>
+	</simple-head>
+</simple-article>
