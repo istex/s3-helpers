@@ -1,9 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import {
   S3Client,
   PutObjectCommand,
   GetObjectCommand,
   ListObjectsV2Command,
 } from "@aws-sdk/client-s3";
+import { Readable } from "stream";
 
 let s3Client: S3Client | undefined;
 
@@ -12,12 +17,13 @@ function initS3Client(config: { endpoint: string, credentials: { accessKeyId: st
     endpoint: config.endpoint,
     credentials: config.credentials,
     forcePathStyle: true,
+    region: "us-east-1"
   })
 }
 
 export function getS3Client(config?: { endpoint: string, credentials: { accessKeyId: string, secretAccessKey: string } }) {
-  if (!s3Client) {
-    if (!config) {
+  if (s3Client == null) {
+    if (config == null) {
       throw new Error("S3 client cannot be created with empty configuration. Please consider calling the function with a correct config object.");
     }
     s3Client = initS3Client(config);
@@ -26,9 +32,7 @@ export function getS3Client(config?: { endpoint: string, credentials: { accessKe
 }
 
 export async function putFileToS3(bucket: string, key: string, file: File, s3Client?: S3Client) {
-  if (!s3Client) {
-    s3Client = getS3Client();
-  }
+  s3Client ??= getS3Client();
   await s3Client.send(
     new PutObjectCommand({
       Bucket: bucket,
@@ -39,9 +43,7 @@ export async function putFileToS3(bucket: string, key: string, file: File, s3Cli
 }
 
 export async function getFileFromS3(bucket: string, key: string, s3Client?: S3Client) {
-  if (!s3Client) {
-    s3Client = getS3Client();
-  }
+  s3Client ??= getS3Client();
   return await s3Client.send(
     new GetObjectCommand({
       Bucket: bucket,
@@ -50,17 +52,54 @@ export async function getFileFromS3(bucket: string, key: string, s3Client?: S3Cl
   )
 }
 
-export async function getListObjectsFromS3(bucket: string, prefix: string, s3Client?: S3Client) {
-  if (!s3Client) {
-    s3Client = getS3Client();
-  }
-  const command = new ListObjectsV2Command({
-    Bucket: bucket,
-    Prefix: prefix,
+export function getListObjectsFromS3(bucket: string, prefix: string, maxKeys?: number, delimiter?: string, s3Client?: S3Client) {
+  s3Client ??= getS3Client();
+
+  let continuationToken: string | undefined;
+  let ended = false;
+  let fetching = false;
+
+  const stream: Readable = new Readable({
+    objectMode: true,
+    async read() {
+      if (fetching || ended) return;
+      fetching = true;
+
+      try {
+        const result = await s3Client.send(new ListObjectsV2Command({
+          Bucket: bucket,
+          Prefix: prefix,
+          Delimiter: delimiter,
+          MaxKeys: maxKeys ?? 1000,
+          ContinuationToken: continuationToken,
+        }));
+        if (result.Contents != null) {
+          for (const obj of result.Contents) {
+            const pushed = stream.push(obj);
+            if (pushed == null) return;
+          }
+        }
+
+        if (result.IsTruncated != null && result.IsTruncated) {
+          if (result.NextContinuationToken == null) {
+            throw new Error("NextContinuationToken is undefined.");
+          }
+          continuationToken = result.NextContinuationToken;
+          return;
+        }
+        ended = true;
+        stream.push(null);
+      }
+      catch (err) {
+        stream.destroy(new Error(String(err)));
+      }
+      finally {
+        fetching = false;
+      }
+    }
   });
 
-  const response = await s3Client.send(command);
-  return response.Contents || [];
+  return stream;
 }
 
 // For tests

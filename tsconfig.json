@@ -1,6 +1,10 @@
 {
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
+    "lib": ["es2024"],
+    "types": ["node"],
+    "module": "esnext",
+    "moduleResolution": "node",
     // File Layout
     // "rootDir": "./src",
     // "outDir": "./dist",
@@ -9,7 +13,6 @@
     // See also https://aka.ms/tsconfig/module
     "module": "nodenext",
     "target": "esnext",
-    "types": [],
     // For nodejs:
     // "lib": ["esnext"],
     // "types": ["node"],
@@ -34,7 +37,6 @@
 
     // Recommended Options
     "strict": true,
-    "jsx": "react-jsx",
     "verbatimModuleSyntax": true,
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
