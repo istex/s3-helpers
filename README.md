@@ -51,3 +51,17 @@ Paramètres:
 | s3Client? | Client S3 (optionnel) |
 
 Le fichier retourné est de type GetObjectCommandOutput (Plus d'informations sur [Cette page](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-aws-sdk-client-s3/Interface/GetObjectCommandOutput/)).
+
+#### getListObjectsFromS3(bucket, prefix, maxKeys?, delimiter?, s3Client?)
+
+Retourne un flux de lecture (de type [Readable](https://nodejs.org/api/stream.html#class-streamreadable)) d'objets (type [Object](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-aws-sdk-client-s3/Interface/_Object/)) contenant des informations sur les fichiers stockés sur le S3 telles que la clé, la taille ou la dernière date de modification du fichier. 
+
+
+Paramètres:
+| Paramètre | Description |
+| --- | --- |
+| bucket | Nom du bucket dans lequel la fonction va envoyer le fichier |
+| prefix | Préfixe (dossier(s) parent(s) à n'importe quel niveau) des objets à lister. |
+| maxKeys? | Nombre maximum d'objets retournés par lecture du flux. La valeur par défaut est de 1000. |
+| delimiter? | Délimiteur utilisé sur le préfixe pour grouper en arborescence (presque toujours "/"). En test, il est utilisé avec une chaîne de caractères arbitraire, car bien que ce soit un comportement étrange, il est nécessaire de le faire pour que le client mocker se comporte correctement. Il est conseillé de ne pas le spécifier pour les utilisations hors tests.
+| s3Client? | Client S3 (optionnel) |
