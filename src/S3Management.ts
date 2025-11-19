@@ -44,12 +44,13 @@ export async function putFileToS3(bucket: string, key: string, file: File, s3Cli
 
 export async function getFileFromS3(bucket: string, key: string, s3Client?: S3Client) {
   s3Client ??= getS3Client();
-  return await s3Client.send(
+  const response = await s3Client.send(
     new GetObjectCommand({
       Bucket: bucket,
       Key: key
     })
-  )
+  );
+  return response.Body;
 }
 
 export function getListObjectsFromS3(bucket: string, prefix: string, maxKeys?: number, delimiter?: string, s3Client?: S3Client) {
