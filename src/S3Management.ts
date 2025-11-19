@@ -7,6 +7,7 @@ import {
   PutObjectCommand,
   GetObjectCommand,
   ListObjectsV2Command,
+  HeadObjectCommand,
 } from "@aws-sdk/client-s3";
 import { Readable } from "stream";
 
@@ -101,6 +102,19 @@ export function getListObjectsFromS3(bucket: string, prefix: string, maxKeys?: n
   });
 
   return stream;
+}
+
+export async function s3FileExists(bucket: string, key: string, s3Client?: S3Client) {
+  s3Client ??= getS3Client();
+  try {
+    await s3Client.send(
+      new HeadObjectCommand({ Bucket: bucket, Key: key })
+    );
+    return true;
+  } catch (err) {
+    if (err instanceof Error && err.name === "NotFound") return false;
+    throw err;
+  }
 }
 
 // For tests
