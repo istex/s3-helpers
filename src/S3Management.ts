@@ -115,6 +115,13 @@ export async function s3FileExists(bucket: string, key: string, s3Client?: S3Cli
   }
 }
 
+export async function getHeadObjectFromS3(bucket: string, key: string, s3Client?: S3Client) {
+  s3Client ??= getS3Client();
+  return await s3Client.send(
+    new HeadObjectCommand({ Bucket: bucket, Key: key })
+  );
+}
+
 // For tests
 export function resetS3Client() {
   s3Client = undefined;

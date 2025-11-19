@@ -6,6 +6,7 @@ import {
   resetS3Client,
   getListObjectsFromS3,
   s3FileExists,
+  getHeadObjectFromS3,
 } from "../src/S3Management.ts";
 import { S3Client } from "@aws-sdk/client-s3";
 import { createS3Client } from "mock-aws-s3-v3";
@@ -45,7 +46,7 @@ describe("putFileToS3(bucket, key, file, s3Client?)", () => {
     let thrown = false;
     try {
       await putFileToS3("dev", "put_test/test.xml", file);
-    } catch (err) {
+    } catch {
       thrown = true;
     }
     expect(thrown).to.be(true);
@@ -158,5 +159,31 @@ describe("s3FileExists(bucket, key)", () => {
     expect(await s3FileExists("banana", "banana/bana.na", mockClient2)).to.be(
       false,
     );
+  });
+});
+
+describe("getHeadObjectFromS3(bucket, key, s3Client?)", () => {
+  const mockClient = createS3Client({
+    localDirectory: "./test/s3_mock",
+    bucket: "dev",
+  });
+  it("Should return HeadObject of the existing file", async () => {
+    const res = await getHeadObjectFromS3(
+      "dev",
+      "get_test/test.xml",
+      mockClient,
+    );
+    expect(res).to.not.be(undefined);
+    expect(res.Key).to.be("get_test/test.xml");
+    expect(res.ContentLength).to.be(4542);
+  });
+  it("Should throw an error trying to fetch the head of a non-existing object", async () => {
+    let thrown = false;
+    try {
+      await getHeadObjectFromS3("dev", "put_test/test.xml", mockClient);
+    } catch {
+      thrown = true;
+    }
+    expect(thrown).to.be(true);
   });
 });
