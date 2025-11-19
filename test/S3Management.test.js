@@ -5,6 +5,7 @@ import {
   getFileFromS3,
   resetS3Client,
   getListObjectsFromS3,
+  s3FileExists,
 } from "../src/S3Management.ts";
 import { S3Client } from "@aws-sdk/client-s3";
 import { createS3Client } from "mock-aws-s3-v3";
@@ -79,7 +80,7 @@ describe("getFileFromS3(bucket, key, s3Client?)", () => {
       bucket: "dev",
     });
     const s3File = await getFileFromS3("dev", "get_test/test.xml", mockClient);
-    expect(await s3File.Body.transformToString()).to.be(
+    expect(await s3File.transformToString()).to.be(
       fs.readFileSync("test/s3_mock/dev/get_test/test.xml").toString(),
     );
   });
@@ -132,5 +133,30 @@ describe("getListObjectsFromS3(bucket, prefix, s3Client?)", () => {
       objectsNoMaxKeys.filter((o) => o.Key.toString().includes("33/file33.pdf"))
         .length,
     ).to.be(1);
+  });
+});
+
+describe("s3FileExists(bucket, key)", () => {
+  const mockClient = createS3Client({
+    localDirectory: "./test/s3_mock",
+    bucket: "dev",
+  });
+
+  it("Should return true for an existing file", async () => {
+    expect(await s3FileExists("dev", "get_test/test.xml", mockClient)).to.be(
+      true,
+    );
+  });
+  it("Should return false for a non existing file", async () => {
+    expect(await s3FileExists("dev", "get_test/bana.na", mockClient)).to.be(
+      false,
+    );
+    const mockClient2 = createS3Client({
+      localDirectory: "s3_mock",
+      bucket: "banana",
+    });
+    expect(await s3FileExists("banana", "banana/bana.na", mockClient2)).to.be(
+      false,
+    );
   });
 });

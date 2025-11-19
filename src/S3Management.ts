@@ -1,7 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+
+
+
+
 import {
   S3Client,
   PutObjectCommand,
@@ -77,8 +77,7 @@ export function getListObjectsFromS3(bucket: string, prefix: string, maxKeys?: n
         }));
         if (result.Contents != null) {
           for (const obj of result.Contents) {
-            const pushed = stream.push(obj);
-            if (pushed == null) return;
+            stream.push(obj);
           }
         }
 
@@ -111,9 +110,8 @@ export async function s3FileExists(bucket: string, key: string, s3Client?: S3Cli
       new HeadObjectCommand({ Bucket: bucket, Key: key })
     );
     return true;
-  } catch (err) {
-    if (err instanceof Error && err.name === "NotFound") return false;
-    throw err;
+  } catch {
+    return false;
   }
 }
 
