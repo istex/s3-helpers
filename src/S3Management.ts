@@ -1,7 +1,3 @@
-
-
-
-
 import {
   S3Client,
   PutObjectCommand,
