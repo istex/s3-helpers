@@ -97,9 +97,7 @@ describe("getListObjectsFromS3(bucket, prefix, s3Client?)", () => {
     const streamNoMaxKeys = getListObjectsFromS3(
       "dev",
       "get_list_object_test",
-      "arbitrary delimiter",
-      null,
-      mockClient,
+      { delimiter: "arbitrary delimiter", maxKeys: null, s3Client: mockClient },
     );
 
     const objectsNoMaxKeys = [];
@@ -108,13 +106,11 @@ describe("getListObjectsFromS3(bucket, prefix, s3Client?)", () => {
     });
     await finished(streamNoMaxKeys);
 
-    const streamMaxKeys = getListObjectsFromS3(
-      "dev",
-      "get_list_object_test",
-      "arbitrary delimiter",
-      2,
-      mockClient,
-    );
+    const streamMaxKeys = getListObjectsFromS3("dev", "get_list_object_test", {
+      delimiter: "arbitrary delimiter",
+      maxKeys: 2,
+      s3Client: mockClient,
+    });
 
     const objectsMaxKeys = [];
     streamMaxKeys.on("data", (data) => {

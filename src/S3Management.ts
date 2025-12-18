@@ -50,8 +50,8 @@ export async function getFileFromS3(bucket: string, key: string, s3Client?: S3Cl
   return response.Body;
 }
 
-export function getListObjectsFromS3(bucket: string, prefix: string, maxKeys?: number, delimiter?: string, s3Client?: S3Client) {
-  s3Client ??= getS3Client();
+export function getListObjectsFromS3(bucket: string, prefix: string, options?: { maxKeys?: number, delimiter?: string, s3Client?: S3Client }) {
+  const s3Client = options?.s3Client ?? getS3Client();
 
   let continuationToken: string | undefined;
   let ended = false;
@@ -67,8 +67,8 @@ export function getListObjectsFromS3(bucket: string, prefix: string, maxKeys?: n
         const result = await s3Client.send(new ListObjectsV2Command({
           Bucket: bucket,
           Prefix: prefix,
-          Delimiter: delimiter,
-          MaxKeys: maxKeys ?? 1000,
+          Delimiter: options?.delimiter,
+          MaxKeys: options?.maxKeys ?? 1000,
           ContinuationToken: continuationToken,
         }));
         if (result.Contents != null) {
