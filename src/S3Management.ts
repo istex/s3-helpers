@@ -114,5 +114,5 @@ export function getEnvConfig() {
   if (process.env.S3_ACCESS_KEY == null) {
     throw new Error("Missing environment variable S3_ACCESS_KEY");
   }
-  return { endpoint: process.env.S3_ENDPOINT, credentials: { accessKeyId: process.env.S3_KEY_ID, secretAccessKey: process.env.S3_ACCESS_KEY } } as S3ClientConfig;
+  return { endpoint: process.env.S3_ENDPOINT, credentials: { accessKeyId: process.env.S3_KEY_ID, secretAccessKey: process.env.S3_ACCESS_KEY } };
 }
