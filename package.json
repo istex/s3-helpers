@@ -1,7 +1,7 @@
 {
   "name": "@ialac/s3-utils",
-  "version": "1.2.1",
-  "main": "index.js",
+  "version": "1.2.2",
+  "main": "dist/index.js",
   "scripts": {
     "test": "vitest",
     "test:run": "vitest run",
