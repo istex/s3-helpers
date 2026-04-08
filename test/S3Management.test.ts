@@ -6,8 +6,9 @@ import {
   getListObjectsFromS3,
   s3FileExists,
   getHeadObjectFromS3,
+  getEnvConfig,
 } from "../src/S3Management";
-import { S3Client, type _Object } from "@aws-sdk/client-s3";
+import { S3Client, type _Object, type S3ClientConfig } from "@aws-sdk/client-s3";
 import { createS3Client } from "mock-aws-s3-v3";
 import fs from "fs";
 import { finished } from "stream/promises";
@@ -201,3 +202,32 @@ describe("getHeadObjectFromS3(bucket, key, s3Client?)", () => {
     ).rejects.toThrow();
   });
 });
+
+describe("getEnvConfig()", () => {
+  it("Should create the config successfully", () => {
+    process.env.S3_ENDPOINT = "http://example:9000";
+    process.env.S3_KEY_ID = "4zot3";
+    process.env.S3_ACCESS_KEY = "4n0th34un1ver53";
+    const config: S3ClientConfig = getEnvConfig();
+    expect(config.endpoint).to.be.equal("http://example:9000");
+    expect((config.credentials)).to.deep.equal({ accessKeyId: "4zot3", secretAccessKey: "4n0th34un1ver53" });
+  });
+  it("Should throw an exception because the S3_ENDPOINT varible is missing", () => {
+    delete process.env.S3_ENDPOINT;
+    process.env.S3_KEY_ID = "4zot3";
+    process.env.S3_ACCESS_KEY = "4n0th34un1ver53";
+    expect(getEnvConfig).toThrow("Missing environment variable S3_ENDPOINT");
+  })
+  it("Should throw an exception because the S3_KEY_ID varible is missing", () => {
+    process.env.S3_ENDPOINT = "http://example:9000";
+    delete process.env.S3_KEY_ID;
+    process.env.S3_ACCESS_KEY = "4n0th34un1ver53";
+    expect(getEnvConfig).toThrow("Missing environment variable S3_KEY_ID");
+  })
+  it("Should throw an exception because the S3_ACCESS_KEY varible is missing", () => {
+    process.env.S3_ENDPOINT = "http://example:9000";
+    delete process.env.S3_ACCESS_KEY;
+    process.env.S3_KEY_ID = "4zot3";
+    expect(getEnvConfig).toThrow("Missing environment variable S3_ACCESS_KEY");
+  })
+})

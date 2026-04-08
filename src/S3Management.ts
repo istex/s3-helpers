@@ -4,6 +4,7 @@ import {
   GetObjectCommand,
   ListObjectsV2Command,
   HeadObjectCommand,
+  type S3ClientConfig,
 } from "@aws-sdk/client-s3";
 import { Readable } from "stream";
 
@@ -101,4 +102,17 @@ export async function getHeadObjectFromS3(bucket: string, key: string, s3Client?
 // For tests
 export function resetS3Client() {
   s3Client = undefined;
+}
+
+export function getEnvConfig() {
+  if (process.env.S3_ENDPOINT == null) {
+    throw new Error("Missing environment variable S3_ENDPOINT");
+  }
+  if (process.env.S3_KEY_ID == null) {
+    throw new Error("Missing environment variable S3_KEY_ID");
+  }
+  if (process.env.S3_ACCESS_KEY == null) {
+    throw new Error("Missing environment variable S3_ACCESS_KEY");
+  }
+  return { endpoint: process.env.S3_ENDPOINT, credentials: { accessKeyId: process.env.S3_KEY_ID, secretAccessKey: process.env.S3_ACCESS_KEY } } as S3ClientConfig;
 }
