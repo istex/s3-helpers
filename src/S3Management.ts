@@ -50,53 +50,33 @@ export async function getFileFromS3(bucket: string, key: string, s3Client?: S3Cl
   return response.Body;
 }
 
-export function getListObjectsFromS3(bucket: string, prefix: string, options?: { maxKeys?: number, delimiter?: string, s3Client?: S3Client }) {
+export async function* listObjectsGenerator(bucket: string, prefix: string, options?: { maxKeys?: number, delimiter?: string, s3Client?: S3Client }) {
   const s3Client = options?.s3Client ?? getS3Client();
-
   let continuationToken: string | undefined;
-  let ended = false;
-  let fetching = false;
 
-  const stream: Readable = new Readable({
-    objectMode: true,
-    async read() {
-      if (fetching || ended) return;
-      fetching = true;
+  for (; ;) {
+    const result = await s3Client.send(new ListObjectsV2Command({
+      Bucket: bucket,
+      Prefix: prefix,
+      Delimiter: options?.delimiter,
+      MaxKeys: options?.maxKeys ?? 1000,
+      ContinuationToken: continuationToken,
+    }));
 
-      try {
-        const result = await s3Client.send(new ListObjectsV2Command({
-          Bucket: bucket,
-          Prefix: prefix,
-          Delimiter: options?.delimiter,
-          MaxKeys: options?.maxKeys ?? 1000,
-          ContinuationToken: continuationToken,
-        }));
-        if (result.Contents != null) {
-          for (const obj of result.Contents) {
-            stream.push(obj);
-          }
-        }
-
-        if (result.IsTruncated != null && result.IsTruncated) {
-          if (result.NextContinuationToken == null) {
-            throw new Error("NextContinuationToken is undefined.");
-          }
-          continuationToken = result.NextContinuationToken;
-          return;
-        }
-        ended = true;
-        stream.push(null);
-      }
-      catch (err) {
-        stream.destroy(new Error(String(err)));
-      }
-      finally {
-        fetching = false;
+    if (result.Contents != null) {
+      for (const obj of result.Contents) {
+        yield obj;
       }
     }
-  });
 
-  return stream;
+    if (result.IsTruncated == null || !result.IsTruncated) break;
+    if (result.NextContinuationToken == null) throw new Error("NextContinuationToken is undefined.");
+    continuationToken = result.NextContinuationToken;
+  }
+}
+
+export function getListObjectsFromS3(bucket: string, prefix: string, options?: { maxKeys?: number, delimiter?: string, s3Client?: S3Client }) {
+  return Readable.from(listObjectsGenerator(bucket, prefix, options), { objectMode: true });
 }
 
 export async function s3FileExists(bucket: string, key: string, s3Client?: S3Client) {
