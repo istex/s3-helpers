@@ -2,7 +2,7 @@
   "compilerOptions": {
     "lib": ["es2024"],
     "types": ["node"],
-    "moduleResolution": "node",
+    "moduleResolution": "nodenext",
     "module": "nodenext",
     "target": "esnext",
     "sourceMap": true,
