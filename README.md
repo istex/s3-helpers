@@ -23,7 +23,7 @@ config: {
 ```
 </details>
 <details>
-<summary><strong>async putFileToS3(bucket, key, file, s3Client?)</strong></summary>
+<summary><strong>async putObjectToS3(bucket, key, file, s3Client?)</strong></summary>
 
 Envoie un fichier vers le stockage S3 dans le bucket avec la clé référencée. Si aucun client S3 n'est rérérencé, la valeur par défaut est le résultat de la fonction `getS3Client` sans objet de configuration.
 
@@ -39,7 +39,7 @@ Paramètres:
 </details>
 
 <details>
-<summary><strong>async getFileFromS3(bucket, key, file, s3Client?)</strong></summary>
+<summary><strong>async getObjectFromS3(bucket, key, file, s3Client?)</strong></summary>
 
 Récupère un fichier du stockage S3 dans le bucket avec la clé référencée. Si aucun client S3 n'est rérérencé, la valeur par défaut est le résultat de la fonction `getS3Client` sans objet de configuration.
 
@@ -70,7 +70,7 @@ Paramètres:
 | s3Client? | Client S3 (optionnel) |
 </details>
 <details>
-<summary><strong>async s3FileExists(bucket, key, s3Client?)</strong></summary>
+<summary><strong>async s3ObjectExists(bucket, key, s3Client?)</strong></summary>
 
 Retourne un booléen correspondant à l'existance d'un fichier dans un stockage s3. Si le bucket et la clé spécifiés correspondent à un fichier sur le stockage, la fonction renvoie `true`. Sinon, elle renvoie `false`.
 Note: La fonction renvoie false lorqu'elle rencontre une erreur (puisque s3 renvoie une erreur NotFound). Toute erreur rencontrée fera que la fonction retourne `false`, même si l'erreur n'est pas liée à un fichier introuvable.
