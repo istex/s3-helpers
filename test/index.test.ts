@@ -14,12 +14,14 @@ import {
   s3ObjectExistsAtPath,
   getHeadObjectFromS3Path,
   getSAH1OfObjectAtPath,
+  deleteObjectFromS3,
+  deleteObjectFromS3Path,
 } from "../src/index.js";
 import { S3Client, type _Object, type S3ClientConfig } from "@aws-sdk/client-s3";
 import { createS3Client } from "mock-aws-s3-v3";
 import fs from "fs";
 import { finished } from "stream/promises";
-import { describe, it, expect, afterAll } from "vitest";
+import { describe, it, expect, afterAll, beforeAll } from "vitest";
 import { createHash } from "crypto";
 
 const config = {
@@ -442,3 +444,33 @@ describe("getBucketAndKeyFromS3Path(s3Path)", () => {
     );
   });
 });
+
+describe("deteleObjectFromS3(bucket, key, s3Client)", () => {
+  beforeAll(() => {
+    fs.mkdirSync("test/s3_mock/dev/delete_object_test/", { recursive: true })
+    fs.writeFileSync("test/s3_mock/dev/delete_object_test/test.txt", "never gonna give you uuup never gonna let you dooown");
+  });
+  it("Should delete the object from S3", async () => {
+    const mockClient = createS3Client({
+      localDirectory: "./test/s3_mock",
+      bucket: "dev",
+    });
+    await deleteObjectFromS3("dev", "delete_object_test/test.txt", mockClient);
+    expect(fs.existsSync("test/s3_mock/dev/delete_object/test/test.txt")).toEqual(false);
+  })
+})
+
+describe("deteleObjectFromS3Path(s3Path, s3Client)", () => {
+  beforeAll(() => {
+    fs.mkdirSync("test/s3_mock/dev/delete_object_test/", { recursive: true })
+    fs.writeFileSync("test/s3_mock/dev/delete_object_test/test.txt", "never gonna give you uuup never gonna let you dooown");
+  });
+  it("Should delete the object from S3", async () => {
+    const mockClient = createS3Client({
+      localDirectory: "./test/s3_mock",
+      bucket: "dev",
+    });
+    await deleteObjectFromS3Path("dev/delete_object_test/test.txt", mockClient);
+    expect(fs.existsSync("test/s3_mock/dev/delete_object/test/test.txt")).toEqual(false);
+  })
+})

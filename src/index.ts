@@ -4,6 +4,7 @@ import {
   GetObjectCommand,
   ListObjectsV2Command,
   HeadObjectCommand,
+  DeleteObjectCommand,
 } from "@aws-sdk/client-s3";
 import { createHash } from "crypto";
 import { Readable } from "stream";
@@ -131,6 +132,17 @@ export async function getSHA1OfObject(bucket: string, key: string, s3Client: S3C
 export async function getSAH1OfObjectAtPath(s3Path: string, s3Client: S3Client) {
   const { bucket, key } = getBucketAndKeyFromS3Path(s3Path);
   return getSHA1OfObject(bucket, key, s3Client);
+}
+
+export async function deleteObjectFromS3(bucket: string, key: string, s3Client: S3Client) {
+  await s3Client.send(
+    new DeleteObjectCommand({ Bucket: bucket, Key: key })
+  );
+}
+
+export async function deleteObjectFromS3Path(s3Path: string, s3Client: S3Client) {
+  const { bucket, key } = getBucketAndKeyFromS3Path(s3Path);
+  return deleteObjectFromS3(bucket, key, s3Client);
 }
 
 export function getEnvConfig() {
