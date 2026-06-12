@@ -18,7 +18,7 @@ export function getS3Client(config: { endpoint: string, credentials: { accessKey
   })
 }
 
-export async function putObjectToS3(bucket: string, key: string, file: Buffer<ArrayBuffer>, s3Client: S3Client) {
+export async function putObjectToS3(bucket: string, key: string, file: Buffer, s3Client: S3Client) {
   await s3Client.send(
     new PutObjectCommand({
       Bucket: bucket,
@@ -40,7 +40,7 @@ export function getBucketAndKeyFromS3Path(s3Path: string): { bucket: string, key
   return { bucket, key };
 }
 
-export async function putObjectToS3Path(s3Path: string, file: Buffer<ArrayBuffer>, s3Client: S3Client) {
+export async function putObjectToS3Path(s3Path: string, file: Buffer, s3Client: S3Client) {
   const { bucket, key } = getBucketAndKeyFromS3Path(s3Path);
   return putObjectToS3(bucket, key, file, s3Client);
 }
